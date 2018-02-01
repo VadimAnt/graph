@@ -1,17 +1,12 @@
 const { makeExecutableSchema } = require('graphql-tools');
 
-const UsersSchema = require('./users/users.type');
-const RootSchema = require('./root/root.type');
-
-const resolvers = require('./resolvers');
-
-const schema = makeExecutableSchema({
+module.exports = makeExecutableSchema({
 	typeDefs: [
-		RootSchema,
-		UsersSchema
+		require('./user/user.type'),
+		require('./root/root.type'),
+		require('./article/article.type'),
+		require('./tag/tag.type')
 	],
 
-	resolvers
+	resolvers: require('./resolvers')
 });
-
-module.exports = schema;

@@ -23,5 +23,10 @@ module.exports = {
 	user: (root, args) => {
 		return users.find((el) => { return el.id === args.id || el.fname === args.fname });
 	},
-	users: () => { return users }
+	users: () => { return users },
+	addUser: (root, args) => {
+		console.log(args);
+		 users.push(args);
+		 return args;
+	}
 };

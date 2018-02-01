@@ -4,4 +4,5 @@ module.exports = `
 		fname: String!
 		lname: String
 	): User
+	editfname(id: Int!, fname: String!): User
 `;

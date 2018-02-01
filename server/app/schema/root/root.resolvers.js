@@ -20,13 +20,12 @@ const users = [
 
 
 module.exports = {
-	user: (root, args) => {
-		return users.find((el) => { return el.id === args.id || el.fname === args.fname });
-	},
+	user: (root, args) => {return users.find((el) => { return el.id === args.id || el.fname === args.fname }); },
 	users: () => { return users },
-	addUser: (root, args) => {
-		console.log(args);
-		 users.push(args);
-		 return args;
+	addUser: (root, args) => { users.push(args); return args; },
+	editfname: (root, args) => {
+		let user = users.find((el) => { return el.id === args.id });
+		user.fname = args.fname;
+		return user;
 	}
 };

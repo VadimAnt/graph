@@ -1,22 +1,23 @@
 const { ArticleModel } = require('../models');
 
-class ArticleController{
+class ArticleController {
 
 	constructor() {
-		this.article = ArticleModel;
+		this.ArticleModel = ArticleModel;
 		this.read = this.read.bind(this);
 		this.create = this.create.bind(this);
 	}
 
-	async read(root, args){
-		return await this.article.find({ userId: root._id });;
+	async read(root) {
+		const articles = await this.ArticleModel.find({ userId: root._id });
+		return articles;
 	}
 
-	async create(root, args){
-		const article = this.article({
+	async create(root, args) {
+		const article = this.ArticleModel({
 			userId: args.userId,
 			title: args.title,
-			descr: args.descr
+			descr: args.descr,
 		});
 
 		await article.save();

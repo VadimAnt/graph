@@ -2,19 +2,20 @@ const { TagModel } = require('../models');
 
 class TagController {
 	constructor() {
-		this.tag = TagModel;
+		this.TagModel = TagModel;
 		this.read = this.read.bind(this);
 		this.create = this.create.bind(this);
 	}
 
-	async read(root, args){
-		return await this.tag.find({ articleId: root._id });
+	async read(root) {
+		const tag = await this.TagModel.find({ articleId: root._id });
+		return tag;
 	}
 
-	async create(root, args){
-		const tag = new this.tag({
+	async create(root, args) {
+		const tag = new this.TagModel({
 			articleId: args.articleId,
-			name: args.name
+			name: args.name,
 		});
 
 		await tag.save();

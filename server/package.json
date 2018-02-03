@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node node_modules/pm2/bin/pm2 start ecosystem.config.js"
+    "start": "node node_modules/pm2/bin/pm2 start ecosystem.config.js",
+    "lint:fix": "node node_modules/eslint/bin/eslint . *.js"
   },
   "keywords": [],
   "author": "",
@@ -20,5 +21,10 @@
     "mongoose": "^5.0.3",
     "pm2": "^2.9.3",
     "require-all": "^2.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0"
   }
 }

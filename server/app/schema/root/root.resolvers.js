@@ -5,8 +5,8 @@ const TagController = require('../../controllers/tag.controller');
 module.exports = {
 	user: UserController.users,
 	users: UserController.users,
-	create: UserController.create ,
+	create: UserController.create,
 	edit: UserController.edit,
 	createArticle: ArticleController.create,
-	createTag: TagController.create
+	createTag: TagController.create,
 };

@@ -1,7 +1,7 @@
 const provider = require('mongoose');
 
 module.exports = class DbService {
-	constructor(){
+	constructor() {
 		this.dsn = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 		this._provider = provider;
 		this._provider.Promise = global.Promise;
@@ -31,7 +31,7 @@ module.exports = class DbService {
 		return provider.connection.dropDatabase();
 	}
 
-	async connect(){
+	async connect() {
 		await this._provider.connect(this.dsn);
 		return this.connection;
 	}

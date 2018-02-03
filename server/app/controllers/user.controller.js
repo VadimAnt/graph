@@ -1,41 +1,37 @@
 const _ = require('lodash');
-const users = [
-	{
-		id: 1,
-		fname: "test1",
-		lname: "test2fname"
-	},
-	{
-		id: 2,
-		fname: "test2",
-		lname: "test1fname"
-	},
-	{
-		id: 3,
-		fname: "test3",
-		lname: "test3fname"
-	},
-];
+const { UserModel } = require('../models');
 
 class UserController {
-	constructor(){}
+	constructor(){
+		this.user = UserModel;
 
-	users(root, args){
+		this.users = this.users.bind(this);
+		this.create = this.create.bind(this);
+		this.edit = this.edit.bind(this);
+	}
+
+	async users(root, args){
 		if(_.has(args, 'id')) {
-			return users.find((el) => { return el.id === args.id });
+			return this.user.findById(args.id);
 		}
 
-		return users;
+		return UserModel.find();
 	}
 
-	create(root, args){
-		users.push(args); return args;
+	async create(root, args){
+		let user = this.user({
+			fname: args.fname,
+			lname: args.lname
+		});
+		await user.save();
+
+		return user;
 	}
 
-	edit(root, args){
-		console.log(args);
-		let user = users.find((el) => { return el.id === args.id });
+	async edit(root, args){
+		let user = this.user.findById(args.id);
 		user.fname = args.fname;
+		await user.update();
 		return user;
 	}
 

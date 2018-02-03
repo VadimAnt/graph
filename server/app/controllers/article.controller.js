@@ -1,27 +1,26 @@
-const articles = [
-	{
-		id: 1,
-		userId: 1,
-		title: "Article1",
-		descr: "test2fname"
-	},
-	{
-		id: 2,
-		userId: 1,
-		title: "Article2",
-		descr: "test1fname"
-	},
-	{
-		id: 3,
-		userId: 1,
-		title: "Article3",
-		descr: "test3fname"
-	},
-];
+const { ArticleModel } = require('../models');
 
 class ArticleController{
-	read(root, args){
-		return articles.filter((el) => { return el.userId === root.id });
+
+	constructor() {
+		this.article = ArticleModel;
+		this.read = this.read.bind(this);
+		this.create = this.create.bind(this);
+	}
+
+	async read(root, args){
+		return await this.article.find({ userId: root._id });;
+	}
+
+	async create(root, args){
+		const article = this.article({
+			userId: args.userId,
+			title: args.title,
+			descr: args.descr
+		});
+
+		await article.save();
+		return article;
 	}
 }
 

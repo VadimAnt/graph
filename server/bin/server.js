@@ -10,7 +10,7 @@ const schema = require('../app/schema');
 app.use('/graphql', bodyParser.json(), apolloUploadExpress(), graphqlExpress({ schema }));
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
 	console.log('Server start');
 });
 

@@ -2,7 +2,7 @@ const mutation = require('./root.mutations');
 
 module.exports = `
 	type Query{
-		user(id: Int!, fname: String!): User
+		user(id: Int!): User
 		users: [User]
 		${mutation}
 	}

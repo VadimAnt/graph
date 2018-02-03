@@ -1,8 +1,8 @@
 module.exports = `
-	addUser(
+	create(
 		id: Int!
 		fname: String!
 		lname: String
 	): User
-	editfname(id: Int!, fname: String!): User
+	edit(id: Int!, fname: String!): User
 `;

@@ -1,10 +1,10 @@
 module.exports = `
-	create(
+	UserCreate(
 		id: Int!
 		fname: String!
 		lname: String
 	): User
-	edit(id: Int!, fname: String!): User
-	createArticle(userId: String!, title: String!, descr: String!): Article
-	createTag(articleId: String!, name: String!): Tag
+	UserEdit(id: Int!, fname: String!): User
+	ArticleCreate(userId: String!, title: String!, descr: String!): Article
+	TagCreate(articleId: String!, name: String!): Tag
 `;

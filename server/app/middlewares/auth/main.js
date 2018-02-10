@@ -8,9 +8,13 @@ module.exports = {
 	auth: async (req, res, next) => {
 		try {
 			const data = await authService.verify(req);
-			if (!await UserRepository.setUser(req, data)) {
+			const user = await UserRepository.findById(data.id);
+			if (!user) {
 				throw Error('User not found');
 			}
+
+			req.user = user;
+
 			return next();
 		} catch (err) {
 			return next(err);

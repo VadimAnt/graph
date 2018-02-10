@@ -25,4 +25,4 @@ class ArticleController {
 	}
 }
 
-module.exports = new ArticleController();
+module.exports = ArticleController;

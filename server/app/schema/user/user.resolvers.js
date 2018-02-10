@@ -1,4 +1,4 @@
-const ArticleController = require('../../controllers/article.controller');
+const { ArticleController } = require('../../controllers');
 
 module.exports = {
 	articles: ArticleController.read,

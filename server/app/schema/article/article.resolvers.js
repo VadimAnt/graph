@@ -1,4 +1,4 @@
-const TagController = require('../../controllers/tag.controller');
+const { TagController } = require('../../controllers');
 
 module.exports = {
 	tags: TagController.read,

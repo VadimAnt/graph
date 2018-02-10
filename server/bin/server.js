@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const { apolloUploadExpress } = require('apollo-upload-server');
 const { DbService, AuthService } = require('../app/services');
-const authMiddleware = require('../app/middlewares/auth/auth');
+const authMiddleware = require('../app/middlewares/auth/main');
 
 const schema = require('../app/schema');
 

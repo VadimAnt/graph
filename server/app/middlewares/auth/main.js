@@ -1,14 +1,14 @@
-const { AuthService, UserService } = require('../../services');
+const { AuthService } = require('../../services');
+const UserRepository = require('../../models/repositories/UserRepository');
 
 const authService = new AuthService();
-const userService = new UserService();
 
 module.exports = {
 
-	auth: async (req, res) => {
+	auth: async (req, res, next) => {
 		try {
 			const data = await authService.verify(req);
-			if (!await userService.initialise(req, data)) {
+			if (!await UserRepository.setUser(req, data)) {
 				throw Error('User not found');
 			}
 			return next();

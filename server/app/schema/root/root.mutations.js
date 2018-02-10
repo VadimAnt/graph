@@ -5,7 +5,7 @@ module.exports = `
 		fname: String!
 		lname: String
 	): User
-	UserEdit(id: Int!, fname: String!): User
+	UserEdit(id: String!, fname: String!): User
 	ArticleCreate(userId: String!, title: String!, descr: String!): Article
 	TagCreate(articleId: String!, name: String!): Tag
 `;

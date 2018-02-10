@@ -1,9 +1,9 @@
 const _ = require('lodash');
-const UserRepository = require('../models/repositories/UserRepository');
+const { UserRepository } = require('../models/repositories');
 
 class UserController {
 	constructor() {
-		this.repository = UserRepository;
+		this.repository = new UserRepository();
 
 		this.users = this.users.bind(this);
 		this.create = this.create.bind(this);
@@ -12,7 +12,7 @@ class UserController {
 
 	async users(root, args) {
 		if (_.has(args, 'id')) {
-			return this.repository.findById(args.id);
+			return this.repository.findById({ query: args.id });
 		}
 
 		return this.repository.findAll();
@@ -30,10 +30,17 @@ class UserController {
 	}
 
 	async edit(root, args) {
-		const user = this.repository.findById(args.id);
-		user.fname = args.fname;
-		await user.update();
-		return user;
+		try {
+
+			const user = await this.repository.findById(args.id);
+			if (!user) throw Error('Not found user');
+			user.fname = args.fname;
+			await this.repository.update(user);
+			return user;
+
+		} catch (err) {
+			return err;
+		}
 	}
 }
 

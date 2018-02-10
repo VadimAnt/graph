@@ -16,7 +16,6 @@ dbService.connect((err) => {
 	throw new Error(err);
 });
 
-
 app.use('/test', authMiddleware.auth, (req, res) => {
 	console.log('test');
 });

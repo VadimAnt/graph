@@ -1,6 +1,7 @@
-const DbService = require('../../services/DbService');
-const ModelName = 'Article';
+const Repository = require('./BaseRepository');
 
-module.exports = class UserRepository {
-	
+module.exports = class ArticleRepository extends Repository {
+	constructor() {
+		super('Article');
+	}
 };

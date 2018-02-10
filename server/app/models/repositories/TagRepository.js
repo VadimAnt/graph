@@ -1,6 +1,7 @@
-const DbService = require('../../services/DbService');
-const ModelName = 'Tag';
+const Repository = require('./BaseRepository');
 
-module.exports = class UserRepository {
-
+module.exports = class TagRepository extends Repository {
+	constructor() {
+		super('Tag');
+	}
 };

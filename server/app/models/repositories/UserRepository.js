@@ -24,8 +24,9 @@ module.exports = class UserRepository {
 		return user;
 	}
 
-	static async update(data) {
-		// TODO
+	static async update(user) {
+		await user.save();
+		return user;
 	}
 
 };

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node node_modules/pm2/bin/pm2 start local.ecosystem.config.js",
-    "lint:fix": "node node_modules/eslint/bin/eslint . *.js"
+    "lint:fix": "node node_modules/eslint/bin/eslint . *.js",
+    "log": "node node_modules/pm2/bin/pm2 log"
   },
   "keywords": [],
   "author": "",

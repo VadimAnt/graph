@@ -1,9 +1,9 @@
 const _ = require('lodash');
-const { UserModel } = require('../models');
+const UserRepository = require('../models/repositories/UserRepository');
 
 class UserController {
 	constructor() {
-		this.user = UserModel;
+		this.repository = UserRepository;
 
 		this.users = this.users.bind(this);
 		this.create = this.create.bind(this);
@@ -12,24 +12,25 @@ class UserController {
 
 	async users(root, args) {
 		if (_.has(args, 'id')) {
-			return this.user.findById(args.id);
+			return this.repository.findById(args.id);
 		}
 
-		return UserModel.find();
+		return this.repository.findAll();
 	}
 
 	async create(root, args) {
-		const user = this.user({
+		const user = this.repository.create({
+			email: args.email,
+			password: args.password,
 			fname: args.fname,
 			lname: args.lname,
 		});
-		await user.save();
 
 		return user;
 	}
 
 	async edit(root, args) {
-		const user = this.user.findById(args.id);
+		const user = this.repository.findById(args.id);
 		user.fname = args.fname;
 		await user.update();
 		return user;

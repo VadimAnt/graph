@@ -1,6 +1,7 @@
 module.exports = `
 	UserCreate(
-		id: Int!
+		email: String!
+		password: String!
 		fname: String!
 		lname: String
 	): User

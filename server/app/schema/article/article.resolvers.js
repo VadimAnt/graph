@@ -1,5 +1,5 @@
 const { TagController } = require('../../controllers');
 
 module.exports = {
-	tags: TagController.read,
+  tags: TagController.read,
 };

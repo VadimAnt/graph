@@ -7,7 +7,6 @@ module.exports = {
         "airbnb-base"
     ],
     "rules": {
-	    "indent": [2, "tab"],
 	    "no-dynamic-require":0,
 	    "no-multi-spaces": 0,
 	    "import/no-dynamic-require": 0,

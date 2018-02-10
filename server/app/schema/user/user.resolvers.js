@@ -1,5 +1,5 @@
 const { ArticleController } = require('../../controllers');
 
 module.exports = {
-	articles: ArticleController.read,
+  articles: ArticleController.read,
 };

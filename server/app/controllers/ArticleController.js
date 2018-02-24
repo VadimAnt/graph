@@ -1,4 +1,4 @@
-const { ArticleRepository } = require('../models/repositories/ArticleRepository');
+const { ArticleRepository } = require('../models/repositories');
 
 class ArticleController {
 
@@ -26,4 +26,4 @@ class ArticleController {
   }
 }
 
-module.exports = ArticleController;
+module.exports = new ArticleController();

@@ -1,4 +1,7 @@
-const { UserController, ArticleController, TagController } = require('../../controllers');
+const UserController = require('../../controllers/UserController');
+const ArticleController = require('../../controllers/ArticleController');
+const TagController = require('../../controllers/TagController');
+
 
 module.exports = {
   user: UserController.users,

@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const { UserRepository } = require('../models/repositories');
+const UserRepository  = require('../models/repositories/UserRepository');
 
 class UserController {
   constructor() {
@@ -19,6 +19,7 @@ class UserController {
   }
 
   async create(root, args) {
+
     const user = this.repository.create({
       email: args.email,
       password: args.password,
@@ -44,4 +45,4 @@ class UserController {
   }
 }
 
-module.exports = UserController;
+module.exports = new UserController();

@@ -1,9 +1,11 @@
+const models = require('../../models');
 const DbService = require('../../services/DbService');
 
 module.exports = class BaseRepository {
 
   constructor(modelName) {
     this.modelName = modelName;
+    this.models = models;
   }
 
   async findById(params) {
@@ -23,13 +25,14 @@ module.exports = class BaseRepository {
 
   async findAll(params) {
     const { query, select, lean } = BaseRepository._prepareData(params);
-
     const entities = await DbService.models(this.modelName).find(query).select(select).lean(lean);
     return entities;
   }
 
   async create(params) {
     const { query } = BaseRepository._prepareData(params);
+
+    console.log(DbService.models());
 
     const entity = await new (DbService.models(this.modelName))(query).save();
     return entity;
@@ -54,14 +57,6 @@ module.exports = class BaseRepository {
 
     const entities = await DbService.models(this.modelName).deleteMany(query);
     return entities;
-  }
-
-  get model() {
-    return DbService.models(this.modelName);
-  }
-
-  set model(modelName) {
-    return DbService.models(modelName);
   }
 
   static _prepareData(params = {}) {

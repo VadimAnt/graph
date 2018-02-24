@@ -10,4 +10,5 @@ module.exports = {
   UserEdit: UserController.edit,
   ArticleCreate: ArticleController.create,
   TagCreate: TagController.create,
+	articles: ArticleController.getAll,
 };

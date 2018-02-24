@@ -6,11 +6,17 @@ class ArticleController {
     this.repository = new ArticleRepository();
     this.read = this.read.bind(this);
     this.create = this.create.bind(this);
+    this.getAll = this.getAll.bind(this);
   }
 
   async read(root) {
     const articles = await this.repository.findById({ query: { userId: root._id } });
     return articles;
+  }
+
+  async getAll() {
+	  const articles = await this.repository.findAll();
+	  return articles;
   }
 
   async create(root, args) {

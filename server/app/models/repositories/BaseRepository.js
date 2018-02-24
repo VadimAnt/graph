@@ -8,18 +8,14 @@ module.exports = class BaseRepository {
     this.models = models;
   }
 
-  async findById(params) {
-    const { query, select, lean } = BaseRepository._prepareData(params);
-
-    const entity = await DbService.models(this.modelName).findById(query).select(select).lean(lean);
+  async findById(id) {
+    const entity = await DbService.models(this.modelName).findById(id);
     if (!entity) return null;
     return entity;
   }
 
   async findOne(params) {
     const { query, select, lean } = BaseRepository._prepareData(params);
-
-    console.log(query);
 
     const entity = await DbService.models(this.modelName).findOne(query).select(select).lean(lean);
     return entity;
@@ -34,31 +30,8 @@ module.exports = class BaseRepository {
   async create(params) {
     const { query } = BaseRepository._prepareData(params);
 
-    console.log(query);
-
     const entity = await new (DbService.models(this.modelName))(query).save();
     return entity;
-  }
-
-  async findByOneAndUpdate(params) {
-    const { query, newData } = BaseRepository._prepareData(params);
-
-    const entity = await DbService.models(this.modelName).findOneAndUpdate(query, newData);
-    return entity;
-  }
-
-  async deleteOne(params) {
-    const { query } = BaseRepository._prepareData(params);
-
-    const entity = await DbService.models(this.modelName).deleteOne(query);
-    return entity;
-  }
-
-  async deleteMany(params) {
-    const { query } = BaseRepository._prepareData(params);
-
-    const entities = await DbService.models(this.modelName).deleteMany(query);
-    return entities;
   }
 
   static _prepareData(params = {}) {

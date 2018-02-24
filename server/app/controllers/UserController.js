@@ -12,10 +12,10 @@ class UserController {
 
   async users(root, args) {
     if (_.has(args, 'id')) {
-      return this.repository.findById({ query: args.id });
+      return await this.repository.findById(args.id);
     }
 
-    return this.repository.findAll();
+    return await this.repository.findAll();
   }
 
   async create(root, args) {
@@ -34,8 +34,11 @@ class UserController {
 
       const user = await this.repository.findById(args.id);
       if (!user) throw Error('Not found user');
-      user.fname = args.fname;
-      await this.repository.update(user);
+      await user.update({
+	      fname: args.fname,
+        lname: args.lname,
+        email: args.email
+      });
       return user;
 
     } catch (err) {

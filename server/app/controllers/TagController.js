@@ -8,7 +8,7 @@ class TagController {
   }
 
   async read(root) {
-    const tag = await this.repository.findById({ query: { article: root._id } });
+    const tag = await this.repository.findAll({ query: { articleId: root._id } });
     return tag;
   }
 

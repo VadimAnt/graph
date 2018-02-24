@@ -19,6 +19,8 @@ module.exports = class BaseRepository {
   async findOne(params) {
     const { query, select, lean } = BaseRepository._prepareData(params);
 
+    console.log(query);
+
     const entity = await DbService.models(this.modelName).findOne(query).select(select).lean(lean);
     return entity;
   }
@@ -31,6 +33,8 @@ module.exports = class BaseRepository {
 
   async create(params) {
     const { query } = BaseRepository._prepareData(params);
+
+    console.log(query);
 
     const entity = await new (DbService.models(this.modelName))(query).save();
     return entity;

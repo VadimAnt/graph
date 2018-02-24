@@ -10,7 +10,7 @@ class ArticleController {
   }
 
   async read(root) {
-    const articles = await this.repository.findById({ query: { userId: root._id } });
+    const articles = await this.repository.findAll({ query: { userId: root._id } });
     return articles;
   }
 

@@ -5,7 +5,7 @@ module.exports = `
 		fname: String!
 		lname: String!
 		descr: String
-		prodile: Profile
+		profile: Profile
 		articles: [Article]
 	}
 `;

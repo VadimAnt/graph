@@ -19,13 +19,12 @@ class UserController {
   }
 
   async create(root, args) {
-
-    const user = this.repository.create({
+    const user = await this.repository.create({ query:{
       email: args.email,
       password: args.password,
       fname: args.fname,
       lname: args.lname,
-    });
+    }});
 
     return user;
   }

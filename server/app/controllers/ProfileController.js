@@ -5,10 +5,11 @@ class ArticleController {
   constructor() {
     this.repository = new ProfileRepository();
     this.create = this.create.bind(this);
+    this.read = this.read.bind(this);
   }
 
 	async read(root) {
-		const profile = await this.repository.findById({ query: { userId: root._id } });
+		const profile = await this.repository.findOne({ query: { userId: root._id } });
 		return profile;
 	}
 

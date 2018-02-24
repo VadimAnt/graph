@@ -15,15 +15,17 @@ class UserController {
       return await this.repository.findById(args.id);
     }
 
+    const users = await this.repository.findAll();
+    console.log(users);
     return await this.repository.findAll();
   }
 
   async create(root, args) {
     const user = await this.repository.create({ query:{
-      email: args.email,
-      password: args.password,
-      fname: args.fname,
-      lname: args.lname,
+      email: args.email || user.email,
+      password: args.password || user.password,
+      fname: args.fname || user.fname,
+      lname: args.lname || user.lname,
     }});
 
     return user;
@@ -35,9 +37,10 @@ class UserController {
       const user = await this.repository.findById(args.id);
       if (!user) throw Error('Not found user');
       await user.update({
-	      fname: args.fname,
-        lname: args.lname,
-        email: args.email
+	      fname: args.fname || user.fname,
+        lname: args.lname || user.lname,
+        email: args.email || user.email,
+        password: args.password || user.password,
       });
       return user;
 

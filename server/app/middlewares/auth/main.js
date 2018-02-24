@@ -1,4 +1,3 @@
-const { AuthService } = require('../../services');
 const UserRepository = require('../../models/repositories/UserRepository');
 
 const authService = new AuthService();

@@ -32,10 +32,6 @@ module.exports = {
 	    "consistent-return": 0,
 	    "max-len": ["error", { "code": 180 }],
 	    "no-tabs": 0,
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
         "quotes": [
             "error",
             "single"

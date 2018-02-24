@@ -32,8 +32,6 @@ module.exports = class BaseRepository {
   async create(params) {
     const { query } = BaseRepository._prepareData(params);
 
-    console.log(DbService.models());
-
     const entity = await new (DbService.models(this.modelName))(query).save();
     return entity;
   }

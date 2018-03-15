@@ -24,6 +24,7 @@ class ProfileConstroller {
 
     return profile;
   }
+  
 }
 
 module.exports = new ProfileConstroller();

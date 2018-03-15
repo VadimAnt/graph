@@ -6,6 +6,7 @@
         {{ item.email }}
         {{ item.id }}
         {{ item.fname }}
+        {{ item.lname }}
       </li>
     </ul>
   </div>
@@ -20,6 +21,7 @@ const users = gql`
       id
       email
       fname
+      lname
     }
   }
 `;
@@ -35,14 +37,8 @@ export default {
       }
   },
   apollo: {
-      // Local state 'posts' data will be updated
-      // by the GraphQL query result
       users: {
-          // GraphQL query
           query: users,
-          // Will update the 'loading' attribute
-          // +1 when a new query is loading
-          // -1 when a query is completed
           loadingKey: 'loading',
       },
   },

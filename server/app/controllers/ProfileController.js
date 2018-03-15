@@ -1,30 +1,29 @@
-const { ProfileRepository } = require('../models/repositories');
+const ProfileModel = require('../models/ProfileModel');
 
-class ArticleController {
+class ProfileConstroller {
 
   constructor() {
-    this.repository = new ProfileRepository();
     this.create = this.create.bind(this);
     this.read = this.read.bind(this);
   }
 
 	async read(root) {
-		const profile = await this.repository.findOne({ query: { userId: root._id } });
+		const profile = await ProfileModel.findOne({ userId: root._id });
 		return profile;
 	}
 
   async create(root, args) {
   	console.log(args);
-    const profile = await this.repository.create({
-      query: {
-        userId: args.userId,
-        title: args.title,
-        balans: args.balans,
-      },
+    const profile = new ProfileModel({
+      userId: args.userId,
+      title: args.title,
+      balans: args.balans,
     });
+
+    profile.save();
 
     return profile;
   }
 }
 
-module.exports = new ArticleController();
+module.exports = new ProfileConstroller();

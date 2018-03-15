@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "node node_modules/pm2/bin/pm2 start local.ecosystem.config.js",
-    "lint:fix": "node node_modules/eslint/bin/eslint . *.js",
     "log": "node node_modules/pm2/bin/pm2 log"
   },
   "keywords": [],
@@ -19,15 +18,10 @@
     "express": "^4.16.2",
     "graphql": "^0.12.3",
     "graphql-tools": "^2.19.0",
-    "jsonwebtoken": "^8.1.1",
     "lodash": "^4.17.4",
     "mongoose": "^5.0.3",
     "pm2": "^2.9.3",
     "require-all": "^2.2.0"
   },
-  "devDependencies": {
-    "eslint": "^4.17.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.8.0"
-  }
+  "devDependencies": {}
 }

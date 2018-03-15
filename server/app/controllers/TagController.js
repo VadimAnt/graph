@@ -1,24 +1,23 @@
-const { TagRepository } = require('../models/repositories');
+const TagModel = require('../models/TagModel');
 
 class TagController {
   constructor() {
-    this.repository = new TagRepository();
     this.read = this.read.bind(this);
     this.create = this.create.bind(this);
   }
 
   async read(root) {
-    const tag = await this.repository.findAll({ query: { articleId: root._id } });
+    const tag = await TagModel.find({ articleId: root._id });
     return tag;
   }
 
   async create(root, args) {
-    const tag = await this.repository.create({
-      query: {
-        articleId: args.articleId,
-        name: args.name,
-      },
+    const tag = await TagModel({
+      articleId: args.articleId,
+      name: args.name,
     });
+
+    await tag.save();
 
     return tag;
   }
